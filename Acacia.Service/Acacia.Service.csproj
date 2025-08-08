@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Acacia.Data\Acacia.Data.csproj" />
+    <ProjectReference Include="..\Acacia.Infrastructure\Acacia.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

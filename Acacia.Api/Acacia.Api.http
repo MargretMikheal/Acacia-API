@@ -1,0 +1,6 @@
+@Acacia.Api_HostAddress = http://localhost:5008
+
+GET {{Acacia.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
