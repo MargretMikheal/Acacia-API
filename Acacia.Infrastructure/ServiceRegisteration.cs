@@ -1,5 +1,4 @@
-﻿using Acacia.Data.Helper;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -12,8 +11,11 @@ namespace Acacia.Infrastructure
     {
         public static IServiceCollection AddServiceRegisteration(this IServiceCollection services, IConfiguration configuration)
         {
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(configuration.GetConnectionString("dbcontext")));
+            // We don't need to register DbContext here as it is already registered in the IdentityServicesRegistration.cs
+            /*
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("dbcontext")));
+            */
             #region Swagger
             services.AddSwaggerGen(swagger =>
             {
@@ -51,6 +53,10 @@ namespace Acacia.Infrastructure
             });
 
             #endregion
+
+            // Aready registered in IdentityServicesRegistration.cs
+
+            /*
             #region authentication
             //JWT authentication
             var jwt = new JWT();
@@ -95,6 +101,7 @@ namespace Acacia.Infrastructure
           });
             #endregion
 
+            */
             return services;
         }
     }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35728.132 d17.12
+VisualStudioVersion = 17.12.35728.132
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acacia.Api", "Acacia.Api\Acacia.Api.csproj", "{8FD134F5-3D5E-4D1C-A954-B8AF4516BD13}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acacia.Infrastructure", "Acacia.Infrastructure\Acacia.Infrastructure.csproj", "{8A9080F9-5CAF-422E-BC77-A3DA2A197A05}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acacia.Service", "Acacia.Service\Acacia.Service.csproj", "{9656EFE4-3462-42AE-941B-C7A51928FD12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acacia.Identity", "Acacia.Identity\Acacia.Identity.csproj", "{847CACD3-DABD-44AE-A5C5-720EB65F2D80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,8 +41,15 @@ Global
 		{9656EFE4-3462-42AE-941B-C7A51928FD12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9656EFE4-3462-42AE-941B-C7A51928FD12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9656EFE4-3462-42AE-941B-C7A51928FD12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{847CACD3-DABD-44AE-A5C5-720EB65F2D80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{847CACD3-DABD-44AE-A5C5-720EB65F2D80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{847CACD3-DABD-44AE-A5C5-720EB65F2D80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{847CACD3-DABD-44AE-A5C5-720EB65F2D80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC3340A6-3D40-4212-B03D-439E6086020C}
 	EndGlobalSection
 EndGlobal

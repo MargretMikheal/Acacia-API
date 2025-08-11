@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Acacia.Core\Acacia.Core.csproj" />
     <ProjectReference Include="..\Acacia.Data\Acacia.Data.csproj" />
+    <ProjectReference Include="..\Acacia.Identity\Acacia.Identity.csproj" />
     <ProjectReference Include="..\Acacia.Infrastructure\Acacia.Infrastructure.csproj" />
     <ProjectReference Include="..\Acacia.Service\Acacia.Service.csproj" />
   </ItemGroup>
