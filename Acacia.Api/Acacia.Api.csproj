@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Acacia.Core\Acacia.Core.csproj" />
     <ProjectReference Include="..\Acacia.Data\Acacia.Data.csproj" />
     <ProjectReference Include="..\Acacia.Identity\Acacia.Identity.csproj" />

@@ -68,6 +68,7 @@ public class AuthService : IAuthService
             LastName = registrationRequest.LastName,
             Address = registrationRequest.Address,
             Country = registrationRequest.Country,
+            CreatedAt = DateTime.UtcNow,
             EmailConfirmed = true
         };
 
@@ -75,7 +76,7 @@ public class AuthService : IAuthService
 
         if (result.Result.Succeeded)
         {
-            await _userManager.AddToRoleAsync(user, "Employee");
+            await _userManager.AddToRoleAsync(user, "User");
             return new RegistrationResponse() { UserId = user.Id };
         }
         else

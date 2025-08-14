@@ -1,9 +1,11 @@
-
 using Acacia.Core;
 using Acacia.Core.MiddleWare;
 using Acacia.Identity;
+using Acacia.Identity.Models;
+using Acacia.Identity.Seeding;
 using Acacia.Infrastructure;
 using Acacia.Service;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -15,7 +17,7 @@ namespace Acacia.Api;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -107,6 +109,15 @@ public class Program
 
 
         app.MapControllers();
+
+        using (var scope = app.Services.CreateScope())
+        {
+            var services = scope.ServiceProvider;
+            var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+            await DataSeeder.SeedAsync(userManager, roleManager);
+        }
 
         app.Run();
     }

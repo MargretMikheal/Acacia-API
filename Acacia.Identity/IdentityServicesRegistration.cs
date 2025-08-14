@@ -22,7 +22,7 @@ public static class IdentityServicesRegistration
         services.Configure<JwtSettings>(configuration.GetSection("JWTSettings"));
 
         services.AddDbContext<AcaciaIdentityDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("AcaciabConnectionString")));
+            options.UseSqlServer(configuration.GetConnectionString("dbcontext")));
 
         services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<AcaciaIdentityDbContext>().AddDefaultTokenProviders();

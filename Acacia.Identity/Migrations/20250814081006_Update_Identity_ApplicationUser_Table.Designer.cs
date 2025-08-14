@@ -4,6 +4,7 @@ using Acacia.Identity.DbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Acacia.Identity.Migrations
 {
     [DbContext(typeof(AcaciaIdentityDbContext))]
-    partial class AcaciaIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250814081006_Update_Identity_ApplicationUser_Table")]
+    partial class Update_Identity_ApplicationUser_Table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

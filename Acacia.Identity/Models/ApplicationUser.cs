@@ -8,6 +8,6 @@ public class ApplicationUser : IdentityUser
     public string LastName { get; set; }
     public string? Address { get; set; }
     public string? Country { get; set; }
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime CreatedAt { get; set; }
     public DateTime? LastLoginDate { get; set; }
 }

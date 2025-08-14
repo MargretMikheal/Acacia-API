@@ -16,7 +16,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.7" />
-  </ItemGroup>
+      </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Acacia.Core\Acacia.Core.csproj" />
