@@ -1,7 +1,7 @@
 ﻿using Acacia.Core.Exeptions;
+using Acacia.Core.Interfaces.Identity;
+using Acacia.Core.Models.Identity;
 using Acacia.Identity.Models;
-using Acacia.Service.Interfaces.Identity;
-using Acacia.Service.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

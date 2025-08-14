@@ -1,6 +1,6 @@
-﻿using Acacia.Identity.Models;
-using Acacia.Service.Interfaces.Identity;
-using Acacia.Service.Models.Identity;
+﻿using Acacia.Core.Interfaces.Identity;
+using Acacia.Core.Models.Identity;
+using Acacia.Identity.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;

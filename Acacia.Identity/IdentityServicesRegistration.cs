@@ -1,8 +1,8 @@
-﻿using Acacia.Identity.DbContext;
+﻿using Acacia.Core.Interfaces.Identity;
+using Acacia.Core.Models.Identity;
+using Acacia.Identity.DbContext;
 using Acacia.Identity.Models;
 using Acacia.Identity.Services;
-using Acacia.Service.Interfaces.Identity;
-using Acacia.Service.Models.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

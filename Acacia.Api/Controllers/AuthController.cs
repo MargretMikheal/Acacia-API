@@ -1,5 +1,5 @@
-﻿using Acacia.Service.Interfaces.Identity;
-using Acacia.Service.Models.Identity;
+﻿using Acacia.Core.Interfaces.Identity;
+using Acacia.Core.Models.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Acacia.Api.Controllers;

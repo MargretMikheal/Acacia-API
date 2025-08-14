@@ -1,6 +1,6 @@
-﻿using Acacia.Service.Models.Identity;
+﻿using Acacia.Core.Models.Identity;
 
-namespace Acacia.Service.Interfaces.Identity;
+namespace Acacia.Core.Interfaces.Identity;
 
 public interface IUserService
 {

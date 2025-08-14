@@ -1,4 +1,4 @@
-﻿namespace Acacia.Service.Models.Identity;
+﻿namespace Acacia.Core.Models.Identity;
 
 public class RegistrationResponse
 {
