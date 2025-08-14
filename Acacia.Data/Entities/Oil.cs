@@ -1,10 +1,10 @@
 ﻿using Acacia.Data.Commons;
-using Acacia.Data.Entities;
 using Acacia.Data.Enums;
+
+namespace Acacia.Data.Entities;
 
 public class Oil : GeneralLocalizableEntity
 {
-    public int Id { get; set; }
     public string Name { get; set; }
 
     public int CompanyId { get; set; }

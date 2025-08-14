@@ -29,8 +29,4 @@
     <ProjectReference Include="..\Acacia.Data\Acacia.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>
