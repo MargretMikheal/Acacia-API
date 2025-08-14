@@ -1,6 +1,8 @@
-﻿namespace Acacia.Data.Entities
+﻿using Acacia.Data.Commons;
+
+namespace Acacia.Data.Entities
 {
-    public class Ingredient
+    public class Ingredient : GeneralLocalizableEntity
     {
         public int Id { get; set; }
         public string NameAr { get; set; }

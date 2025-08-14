@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Acacia.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
 
 namespace Acacia.Infrastructure
 {
@@ -11,11 +10,8 @@ namespace Acacia.Infrastructure
     {
         public static IServiceCollection AddServiceRegisteration(this IServiceCollection services, IConfiguration configuration)
         {
-            // We don't need to register DbContext here as it is already registered in the IdentityServicesRegistration.cs
-            /*
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<AcaciaDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("dbcontext")));
-            */
             #region Swagger
             services.AddSwaggerGen(swagger =>
             {
@@ -54,54 +50,7 @@ namespace Acacia.Infrastructure
 
             #endregion
 
-            // Aready registered in IdentityServicesRegistration.cs
 
-            /*
-            #region authentication
-            //JWT authentication
-            var jwt = new JWT();
-            configuration.GetSection(nameof(JWT)).Bind(jwt);
-            services.AddSingleton(jwt);
-
-
-            //services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-            //{
-            //    options.Tokens.PasswordResetTokenProvider = TokenOptions.DefaultProvider;
-            //    options.SignIn.RequireConfirmedEmail = true;
-            //    options.User.RequireUniqueEmail = true;
-
-            //    options.Password.RequireDigit = false;
-            //    options.Password.RequiredUniqueChars = 0;
-            //    options.Password.RequireLowercase = false;
-            //    options.Password.RequireNonAlphanumeric = false;
-            //    options.Password.RequireUppercase = false;
-            //})
-            //.AddEntityFrameworkStores<ApplicationDbContext>()
-            //.AddDefaultTokenProviders();
-
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-          .AddJwtBearer(x =>
-          {
-              x.RequireHttpsMetadata = false;
-              x.SaveToken = true;
-              x.TokenValidationParameters = new TokenValidationParameters
-              {
-                  ValidateIssuer = jwt.validateIssure,
-                  ValidIssuers = new[] { jwt.Issuer },
-                  ValidateIssuerSigningKey = jwt.validateIssureSignInKey,
-                  IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwt.Key)),
-                  ValidAudience = jwt.Audience,
-                  ValidateAudience = jwt.validateAudience,
-                  ValidateLifetime = jwt.validateLifeTime,
-              };
-          });
-            #endregion
-
-            */
             return services;
         }
     }
