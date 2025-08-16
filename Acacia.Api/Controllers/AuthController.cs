@@ -11,18 +11,20 @@ public class AuthController : ControllerBase
     private readonly IAuthService _authService;
     public AuthController(IAuthService authenticationService)
     {
-        this._authService = authenticationService;
+        _authService = authenticationService;
     }
 
     [HttpPost("login")]
     public async Task<ActionResult<AuthResponse>> Login(AuthRequest request)
     {
-        return Ok(await _authService.Login(request));
+        var response = await _authService.Login(request);
+        return StatusCode((int)response.Response_Code, response);
     }
 
     [HttpPost("register")]
     public async Task<ActionResult<RegistrationResponse>> Register(RegistrationRequest request)
     {
-        return Ok(await _authService.Register(request));
+        var response = await _authService.Register(request);
+        return StatusCode((int)response.Response_Code, response);
     }
 }

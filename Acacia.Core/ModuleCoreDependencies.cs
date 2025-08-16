@@ -1,4 +1,5 @@
-﻿using Acacia.Core.Behaviors;
+﻿using Acacia.Core.Bases;
+using Acacia.Core.Behaviors;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +11,8 @@ namespace Acacia.Core
     {
         public static IServiceCollection AddCoreDependencies(this IServiceCollection services)
         {
+            services.AddScoped<ResponseHandler>();
+         
             //Configuration of MidiatR
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
             //configuration of Automapper

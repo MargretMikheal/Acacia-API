@@ -22,17 +22,15 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-
-        // Identity Services Registration
-        builder.Services.AddIdentityServices(builder.Configuration);
-
         builder.Services.AddControllers();
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
+
         #region Dependency Injection
         builder.Services.AddInfrastructureDependencies()
             .AddServiceDependencies()
             .AddCoreDependencies()
+            .AddIdentityServices(builder.Configuration)
             .AddServiceRegisteration(builder.Configuration);
         #endregion
 
@@ -61,6 +59,7 @@ public class Program
         });
 
         #endregion
+
         #region CORS
         var MyAllowSpecificOrigins = "_corsPolicy";
         builder.Services.AddCors(options =>
@@ -81,6 +80,7 @@ public class Program
             var factory = x.GetRequiredService<IUrlHelperFactory>();
             return factory.GetUrlHelper(actionContext);
         });
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
