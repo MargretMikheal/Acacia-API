@@ -36,7 +36,8 @@ namespace Acacia.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NameAr = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     NameEn = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
+                    ImageUrl = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,7 +66,8 @@ namespace Acacia.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NameAr = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    NameEn = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    NameEn = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -84,7 +86,8 @@ namespace Acacia.Infrastructure.Migrations
                     Style = table.Column<int>(type: "int", nullable: false),
                     DescriptionAr = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     DescriptionEn = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    PriceListId = table.Column<int>(type: "int", nullable: false)
+                    PriceListId = table.Column<int>(type: "int", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -134,7 +137,8 @@ namespace Acacia.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductTypeId = table.Column<int>(type: "int", nullable: false),
                     SizeValue = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SizeUnit = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    SizeUnit = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -182,7 +186,8 @@ namespace Acacia.Infrastructure.Migrations
                     Formal = table.Column<decimal>(type: "decimal(4,2)", precision: 4, scale: 2, nullable: true),
                     Casual = table.Column<decimal>(type: "decimal(4,2)", precision: 4, scale: 2, nullable: true),
                     Night = table.Column<decimal>(type: "decimal(4,2)", precision: 4, scale: 2, nullable: true),
-                    Sport = table.Column<decimal>(type: "decimal(4,2)", precision: 4, scale: 2, nullable: true)
+                    Sport = table.Column<decimal>(type: "decimal(4,2)", precision: 4, scale: 2, nullable: true),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -205,7 +210,8 @@ namespace Acacia.Infrastructure.Migrations
                     Summer = table.Column<decimal>(type: "decimal(4,2)", precision: 4, scale: 2, nullable: true),
                     Winter = table.Column<decimal>(type: "decimal(4,2)", precision: 4, scale: 2, nullable: true),
                     Fall = table.Column<decimal>(type: "decimal(4,2)", precision: 4, scale: 2, nullable: true),
-                    Spring = table.Column<decimal>(type: "decimal(4,2)", precision: 4, scale: 2, nullable: true)
+                    Spring = table.Column<decimal>(type: "decimal(4,2)", precision: 4, scale: 2, nullable: true),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -277,7 +283,8 @@ namespace Acacia.Infrastructure.Migrations
                     PriceListId = table.Column<int>(type: "int", nullable: false),
                     ProductTypeId = table.Column<int>(type: "int", nullable: false),
                     ProductSizeId = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -304,15 +311,15 @@ namespace Acacia.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "ProductTypes",
-                columns: new[] { "Id", "NameAr", "NameEn" },
+                columns: new[] { "Id", "CreationDate", "NameAr", "NameEn" },
                 values: new object[,]
                 {
-                    { 1, "عطر", "Perfume" },
-                    { 2, "مخمريه", "Mukhammaria" },
-                    { 3, "بودي سبلاش", "BodySplash" },
-                    { 4, "شموع", "Candle" },
-                    { 5, "لوشن الجسم", "BodyLotion" },
-                    { 6, "مباخر", "Incense" }
+                    { 1, new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "عطر", "Perfume" },
+                    { 2, new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "مخمريه", "Mukhammaria" },
+                    { 3, new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "بودي سبلاش", "BodySplash" },
+                    { 4, new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "شموع", "Candle" },
+                    { 5, new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "لوشن الجسم", "BodyLotion" },
+                    { 6, new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "مباخر", "Incense" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -19,4 +19,44 @@
     <ProjectReference Include="..\Acacia.Data\Acacia.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\BottleDesigns\Commands\CreateBottleDesign\" />
+    <Folder Include="Features\BottleDesigns\Commands\DeleteBottleDesign\" />
+    <Folder Include="Features\BottleDesigns\Commands\UpdateBottleDesign\" />
+    <Folder Include="Features\BottleDesigns\Queries\GetBottleDesignById\" />
+    <Folder Include="Features\BottleDesigns\Queries\GetAllBottleDesigns\" />
+    <Folder Include="Features\Companies\Commands\CreateCompany\" />
+    <Folder Include="Features\Companies\Commands\DeleteCompany\" />
+    <Folder Include="Features\Companies\Commands\UpdateCompany\" />
+    <Folder Include="Features\Companies\Queries\GetCompanyById\" />
+    <Folder Include="Features\Companies\Queries\GetAllCompanies\" />
+    <Folder Include="Features\FinalProducts\Commands\CreateFinalProduct\" />
+    <Folder Include="Features\FinalProducts\Commands\DeleteFinalProduct\" />
+    <Folder Include="Features\FinalProducts\Commands\UpdateFinalProduct\" />
+    <Folder Include="Features\FinalProducts\Queries\GetFinalProductById\" />
+    <Folder Include="Features\FinalProducts\Queries\GetAllFinalProducts\" />
+    <Folder Include="Features\Ingredients\Commands\CreateIngredient\" />
+    <Folder Include="Features\Ingredients\Commands\DeleteIngredient\" />
+    <Folder Include="Features\Ingredients\Commands\UpdateIngredient\" />
+    <Folder Include="Features\Ingredients\Queries\GetIngredientById\" />
+    <Folder Include="Features\Ingredients\Queries\GetAllIngredients\" />
+    <Folder Include="Features\Oils\Commands\CreateOil\" />
+    <Folder Include="Features\Oils\Commands\DeleteOil\" />
+    <Folder Include="Features\Oils\Commands\UpdateOil\" />
+    <Folder Include="Features\Oils\Queries\GetOilById\" />
+    <Folder Include="Features\Oils\Queries\GetAllOils\" />
+    <Folder Include="Features\Oils\Queries\GetOilsByCompany\" />
+    <Folder Include="Features\PriceLists\Commands\CreatePriceList\" />
+    <Folder Include="Features\PriceLists\Commands\DeletePriceList\" />
+    <Folder Include="Features\PriceLists\Commands\UpdatePriceList\" />
+    <Folder Include="Features\PriceLists\Queries\GetPriceListById\" />
+    <Folder Include="Features\PriceLists\Queries\GetAllPriceLists\" />
+    <Folder Include="Features\ProductSizes\Commands\CreateProductSize\" />
+    <Folder Include="Features\ProductSizes\Commands\DeleteProductSize\" />
+    <Folder Include="Features\ProductSizes\Commands\UpdateProductSize\" />
+    <Folder Include="Features\ProductSizes\Queries\GetAllProductSizes\" />
+    <Folder Include="Features\ProductSizes\Queries\GetProductSizeById\" />
+    <Folder Include="Features\ProductTypes\Queries\GetAllProductTypes\" />
+  </ItemGroup>
+
 </Project>

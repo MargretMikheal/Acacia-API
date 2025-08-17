@@ -37,13 +37,14 @@ namespace Acacia.Infrastructure.Configuration
                    .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasData(
-                new ProductType { Id = (int)ProductTypeEnum.Perfume, NameAr = "عطر", NameEn = ProductTypeEnum.Perfume.ToString() },
-                new ProductType { Id = (int)ProductTypeEnum.Mukhammaria, NameAr = "مخمريه", NameEn = ProductTypeEnum.Mukhammaria.ToString() },
-                new ProductType { Id = (int)ProductTypeEnum.BodySplash, NameAr = "بودي سبلاش", NameEn = ProductTypeEnum.BodySplash.ToString() },
-                new ProductType { Id = (int)ProductTypeEnum.Candle, NameAr = "شموع", NameEn = ProductTypeEnum.Candle.ToString() },
-                new ProductType { Id = (int)ProductTypeEnum.BodyLotion, NameAr = "لوشن الجسم", NameEn = ProductTypeEnum.BodyLotion.ToString() },
-                new ProductType { Id = (int)ProductTypeEnum.Incense, NameAr = "مباخر", NameEn = ProductTypeEnum.Incense.ToString() }
-            );
+                    new ProductType { Id = (int)ProductTypeEnum.Perfume, NameAr = "عطر", NameEn = nameof(ProductTypeEnum.Perfume), CreationDate = new DateTime(2024, 01, 01) },
+                    new ProductType { Id = (int)ProductTypeEnum.Mukhammaria, NameAr = "مخمريه", NameEn = nameof(ProductTypeEnum.Mukhammaria), CreationDate = new DateTime(2024, 01, 01) },
+                    new ProductType { Id = (int)ProductTypeEnum.BodySplash, NameAr = "بودي سبلاش", NameEn = nameof(ProductTypeEnum.BodySplash), CreationDate = new DateTime(2024, 01, 01) },
+                    new ProductType { Id = (int)ProductTypeEnum.Candle, NameAr = "شموع", NameEn = nameof(ProductTypeEnum.Candle), CreationDate = new DateTime(2024, 01, 01) },
+                    new ProductType { Id = (int)ProductTypeEnum.BodyLotion, NameAr = "لوشن الجسم", NameEn = nameof(ProductTypeEnum.BodyLotion), CreationDate = new DateTime(2024, 01, 01) },
+                    new ProductType { Id = (int)ProductTypeEnum.Incense, NameAr = "مباخر", NameEn = nameof(ProductTypeEnum.Incense), CreationDate = new DateTime(2024, 01, 01) }
+                );
+
         }
     }
 }

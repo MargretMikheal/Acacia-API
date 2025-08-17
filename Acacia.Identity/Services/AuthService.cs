@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Net;
 using System.Security.Claims;
 using System.Text;
 
@@ -28,7 +27,7 @@ public class AuthService : IAuthService
         ResponseHandler responseHandler,
         IValidator<AuthRequest> authRequestValidator,
         IValidator<RegistrationRequest> registrationRequestValidator)
-        {
+    {
         _jwtSettings = jwtSettings.Value;
         _signInManager = signInManager;
         _userManager = userManager;

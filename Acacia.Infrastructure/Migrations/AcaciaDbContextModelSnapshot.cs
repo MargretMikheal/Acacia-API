@@ -139,6 +139,9 @@ namespace Acacia.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -157,6 +160,53 @@ namespace Acacia.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Ingredients", (string)null);
+                });
+
+            modelBuilder.Entity("Acacia.Data.Entities.Oil", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DescriptionAr")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("DescriptionEn")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("PriceListId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Style")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("PriceListId");
+
+                    b.ToTable("Oils", (string)null);
                 });
 
             modelBuilder.Entity("Acacia.Data.Entities.OilIngredient", b =>
@@ -190,6 +240,9 @@ namespace Acacia.Infrastructure.Migrations
                         .HasPrecision(4, 2)
                         .HasColumnType("decimal(4,2)");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<decimal?>("Formal")
                         .HasPrecision(4, 2)
                         .HasColumnType("decimal(4,2)");
@@ -220,6 +273,9 @@ namespace Acacia.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal?>("Fall")
                         .HasPrecision(4, 2)
@@ -282,6 +338,9 @@ namespace Acacia.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -313,6 +372,9 @@ namespace Acacia.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("ProductTypeId")
                         .HasColumnType("int");
 
@@ -339,6 +401,9 @@ namespace Acacia.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("NameAr")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -357,83 +422,45 @@ namespace Acacia.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
+                            CreationDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             NameAr = "عطر",
                             NameEn = "Perfume"
                         },
                         new
                         {
                             Id = 2,
+                            CreationDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             NameAr = "مخمريه",
                             NameEn = "Mukhammaria"
                         },
                         new
                         {
                             Id = 3,
+                            CreationDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             NameAr = "بودي سبلاش",
                             NameEn = "BodySplash"
                         },
                         new
                         {
                             Id = 4,
+                            CreationDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             NameAr = "شموع",
                             NameEn = "Candle"
                         },
                         new
                         {
                             Id = 5,
+                            CreationDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             NameAr = "لوشن الجسم",
                             NameEn = "BodyLotion"
                         },
                         new
                         {
                             Id = 6,
+                            CreationDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             NameAr = "مباخر",
                             NameEn = "Incense"
                         });
-                });
-
-            modelBuilder.Entity("Oil", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Category")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DescriptionAr")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("DescriptionEn")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<int>("PriceListId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Style")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("PriceListId");
-
-                    b.ToTable("Oils", (string)null);
                 });
 
             modelBuilder.Entity("Acacia.Data.Entities.FinalProducts.BodyLotionFinalProduct", b =>
@@ -517,7 +544,7 @@ namespace Acacia.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Oil", "Oil")
+                    b.HasOne("Acacia.Data.Entities.Oil", "Oil")
                         .WithMany("FinalProducts")
                         .HasForeignKey("OilId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -544,6 +571,25 @@ namespace Acacia.Infrastructure.Migrations
                     b.Navigation("ProductType");
                 });
 
+            modelBuilder.Entity("Acacia.Data.Entities.Oil", b =>
+                {
+                    b.HasOne("Acacia.Data.Entities.Company", "Company")
+                        .WithMany("Oils")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Acacia.Data.Entities.PriceList", "PriceList")
+                        .WithMany("Oils")
+                        .HasForeignKey("PriceListId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+
+                    b.Navigation("PriceList");
+                });
+
             modelBuilder.Entity("Acacia.Data.Entities.OilIngredient", b =>
                 {
                     b.HasOne("Acacia.Data.Entities.Ingredient", "Ingredient")
@@ -552,7 +598,7 @@ namespace Acacia.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Oil", "Oil")
+                    b.HasOne("Acacia.Data.Entities.Oil", "Oil")
                         .WithMany("OilIngredients")
                         .HasForeignKey("OilId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -565,7 +611,7 @@ namespace Acacia.Infrastructure.Migrations
 
             modelBuilder.Entity("Acacia.Data.Entities.OilOccasionScore", b =>
                 {
-                    b.HasOne("Oil", "Oil")
+                    b.HasOne("Acacia.Data.Entities.Oil", "Oil")
                         .WithOne("OccasionScore")
                         .HasForeignKey("Acacia.Data.Entities.OilOccasionScore", "OilId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -576,7 +622,7 @@ namespace Acacia.Infrastructure.Migrations
 
             modelBuilder.Entity("Acacia.Data.Entities.OilSeasonScore", b =>
                 {
-                    b.HasOne("Oil", "Oil")
+                    b.HasOne("Acacia.Data.Entities.Oil", "Oil")
                         .WithOne("SeasonScore")
                         .HasForeignKey("Acacia.Data.Entities.OilSeasonScore", "OilId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -623,25 +669,6 @@ namespace Acacia.Infrastructure.Migrations
                     b.Navigation("ProductType");
                 });
 
-            modelBuilder.Entity("Oil", b =>
-                {
-                    b.HasOne("Acacia.Data.Entities.Company", "Company")
-                        .WithMany("Oils")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Acacia.Data.Entities.PriceList", "PriceList")
-                        .WithMany("Oils")
-                        .HasForeignKey("PriceListId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-
-                    b.Navigation("PriceList");
-                });
-
             modelBuilder.Entity("Acacia.Data.Entities.BottleDesign", b =>
                 {
                     b.Navigation("FinalProducts");
@@ -655,6 +682,19 @@ namespace Acacia.Infrastructure.Migrations
             modelBuilder.Entity("Acacia.Data.Entities.Ingredient", b =>
                 {
                     b.Navigation("OilIngredients");
+                });
+
+            modelBuilder.Entity("Acacia.Data.Entities.Oil", b =>
+                {
+                    b.Navigation("FinalProducts");
+
+                    b.Navigation("OccasionScore")
+                        .IsRequired();
+
+                    b.Navigation("OilIngredients");
+
+                    b.Navigation("SeasonScore")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Acacia.Data.Entities.PriceList", b =>
@@ -680,19 +720,6 @@ namespace Acacia.Infrastructure.Migrations
                     b.Navigation("PriceListItems");
 
                     b.Navigation("ProductSizes");
-                });
-
-            modelBuilder.Entity("Oil", b =>
-                {
-                    b.Navigation("FinalProducts");
-
-                    b.Navigation("OccasionScore")
-                        .IsRequired();
-
-                    b.Navigation("OilIngredients");
-
-                    b.Navigation("SeasonScore")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
