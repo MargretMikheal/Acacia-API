@@ -46,5 +46,6 @@
         public const string FailedToConfirmEmail = "FailedToConfirmEmail";
         public const string CodeIsNotValid = "CodeIsNotValid";
         public const string FailedToResetPassword = "FailedToResetPassword";
+        public const string DuplicateEntry = "DuplicateEntry";
     }
 }

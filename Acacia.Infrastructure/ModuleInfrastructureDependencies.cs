@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Acacia.Core.Interfaces.IReposetories;
+using Acacia.Infrastructure.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Acacia.Infrastructure
 {
@@ -6,7 +8,7 @@ namespace Acacia.Infrastructure
     {
         public static IServiceCollection AddInfrastructureDependencies(this IServiceCollection services)
         {
-
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
         }
     }

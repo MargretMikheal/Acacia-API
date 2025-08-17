@@ -246,4 +246,7 @@
   <data name="FailedToResetPassword" xml:space="preserve">
     <value>فشل في تغيير كلمه المرور</value>
   </data>
+  <data name="DuplicateEntry" xml:space="preserve">
+    <value>إدخال مكرر</value>
+  </data>
 </root>

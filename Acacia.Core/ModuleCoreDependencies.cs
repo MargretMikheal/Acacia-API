@@ -12,15 +12,12 @@ namespace Acacia.Core
         public static IServiceCollection AddCoreDependencies(this IServiceCollection services)
         {
             services.AddScoped<ResponseHandler>();
-         
+
             //Configuration of MidiatR
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
-            //configuration of Automapper
-            // services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
+            services.AddAutoMapper(cfg => cfg.AddMaps(Assembly.GetExecutingAssembly()));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-
             return services;
         }
     }

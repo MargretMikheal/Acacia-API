@@ -16,9 +16,6 @@ namespace Acacia.Infrastructure.Configuration
                    .HasColumnType("decimal(18,2)")
                    .IsRequired();
 
-            builder.Property(ps => ps.SizeUnit)
-                   .HasMaxLength(50)
-                   .IsRequired();
 
             builder.HasOne(ps => ps.ProductType)
                    .WithMany(pt => pt.ProductSizes)
