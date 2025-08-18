@@ -7,8 +7,8 @@ public interface IGenericRepository<T> where T : BaseEntity
 {
     Task<T?> GetByIdAsync(int id, CancellationToken cancellationToken = default);
     Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);
-    Task CreateAsync(T entity, CancellationToken cancellationToken = default);
-    void Update(T entity, CancellationToken cancellationToken = default);
-    void Delete(T entity, CancellationToken cancellationToken = default);
-    Task<bool> ExistsAsync(int id, CancellationToken token = default);
+    Task<T> AddAsync(T entity, CancellationToken cancellationToken = default);
+    Task<T> UpdateAsync(T entity, CancellationToken cancellationToken = default);
+    Task<bool> DeleteAsync(int id, CancellationToken cancellationToken = default);
+    Task<bool> ExistsAsync(int id, CancellationToken cancellationToken = default);
 }

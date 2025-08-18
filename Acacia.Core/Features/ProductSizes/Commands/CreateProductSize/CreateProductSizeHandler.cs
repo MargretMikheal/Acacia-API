@@ -1,4 +1,5 @@
 ﻿using Acacia.Core.Bases;
+using Acacia.Core.Interfaces.IReposetories;
 using Acacia.Core.Interfaces.Services;
 using Acacia.Core.Resources;
 using Acacia.Data.Entities;
@@ -12,19 +13,19 @@ namespace Acacia.Core.Features.ProductSizes.Commands.CreateProductSize
         IRequestHandler<CreateProductSizeCommand, Response<ProductSizeResponse>>
     {
         #region Fields
-        private readonly IProductSizeService _productSizeService;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IStringLocalizer<SharedResources> _localizer;
         #endregion
 
         #region Ctor
         public ProductSizeCommandHandler(
-            IProductSizeService productSizeService,
+            IUnitOfWork unitOfWork,
             IMapper mapper,
             IStringLocalizer<SharedResources> localizer
         ) : base(localizer)
         {
-            _productSizeService = productSizeService;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
             _localizer = localizer;
         }
@@ -39,20 +40,21 @@ namespace Acacia.Core.Features.ProductSizes.Commands.CreateProductSize
             //    return NotFound<ProductSizeResponse>(_localizer[SharedResourcesKeys.NotFound]);
             //}
 
-            var exists = await _productSizeService.ExistsForProductAsync(request.ProductTypeId, request.Size);
+            var exists = await _unitOfWork.productSizeRepository.ExistsForProductAsync(request.ProductTypeId, request.Size);
             if (exists)
             {
                 var error = new Dictionary<string, List<string>>
                 {
                     { nameof(ProductSize), new List<string> { _localizer[SharedResourcesKeys.DuplicateEntry] } }
                 };
-
                 return UnprocessableEntity<ProductSizeResponse>(error);
             }
 
             var entity = _mapper.Map<ProductSize>(request);
 
-            var created = await _productSizeService.AddAsync(entity);
+            var created = await _unitOfWork.productSizeRepository.AddAsync(entity, cancellationToken);
+
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             var dto = _mapper.Map<ProductSizeResponse>(created);
 

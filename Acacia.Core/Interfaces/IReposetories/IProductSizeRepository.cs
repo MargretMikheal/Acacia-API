@@ -5,4 +5,5 @@ namespace Acacia.Core.Interfaces.IReposetories;
 
 public interface IProductSizeRepository : IGenericRepository<ProductSize>
 {
+    Task<bool> ExistsForProductAsync(int productTypeId, decimal size);
 }

@@ -8,7 +8,7 @@ namespace Acacia.Service
     {
         public static IServiceCollection AddServiceDependencies(this IServiceCollection services)
         {
-            services.AddTransient<IProductSizeService, ProductSizeService>();
+            //services.AddTransient<IProductSizeService, ProductSizeService>();
             return services;
         }
     }

@@ -4,6 +4,7 @@ using Acacia.Data.Entities;
 
 namespace Acacia.Service.Services
 {
+    /*
     public class ProductSizeService : IProductSizeService
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -25,14 +26,14 @@ namespace Acacia.Service.Services
 
         public async Task<ProductSize> AddAsync(ProductSize productSize)
         {
-            await _unitOfWork.productSizeRepository.CreateAsync(productSize);
+            await _unitOfWork.productSizeRepository.AddAsync(productSize);
             await _unitOfWork.SaveChangesAsync();
             return productSize;
         }
 
         public async Task<ProductSize> UpdateAsync(ProductSize productSize)
         {
-            _unitOfWork.productSizeRepository.Update(productSize);
+            _unitOfWork.productSizeRepository.UpdateAsync(productSize);
             await _unitOfWork.SaveChangesAsync();
             return productSize;
         }
@@ -42,7 +43,7 @@ namespace Acacia.Service.Services
             var entity = await _unitOfWork.productSizeRepository.GetByIdAsync(id);
             if (entity == null) return false;
 
-            _unitOfWork.productSizeRepository.Delete(entity);
+            _unitOfWork.productSizeRepository.DeleteAsync(entity);
             await _unitOfWork.SaveChangesAsync();
             return true;
         }
@@ -53,5 +54,5 @@ namespace Acacia.Service.Services
             return allProductSizes.Any(ps => ps.ProductTypeId == productTypeId && ps.SizeValue == size);
         }
     }
-
+    */
 }
