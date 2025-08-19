@@ -51,7 +51,6 @@
     <Folder Include="Features\PriceLists\Queries\GetPriceListById\" />
     <Folder Include="Features\PriceLists\Queries\GetAllPriceLists\" />
     <Folder Include="Features\ProductSizes\Queries\GetAllProductSizes\" />
-    <Folder Include="Features\ProductSizes\Queries\GetProductSizeById\" />
     <Folder Include="Features\ProductTypes\Queries\GetAllProductTypes\" />
   </ItemGroup>
 

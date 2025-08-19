@@ -2,6 +2,7 @@
 using Acacia.Core.Features.ProductSizes.Commands.CreateProductSize;
 using Acacia.Core.Features.ProductSizes.Commands.DeleteProductSize;
 using Acacia.Core.Features.ProductSizes.Commands.UpdateProductSize;
+using Acacia.Core.Features.ProductSizes.Queries.GetProductSizeById;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Acacia.Api.Controllers
@@ -28,6 +29,13 @@ namespace Acacia.Api.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _mediator.Send(new DeleteProductSizeCommand(id));
+            return NewResult(response);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var response = await _mediator.Send(new GetProductSizeByIdQuery(id));
             return NewResult(response);
         }
     }

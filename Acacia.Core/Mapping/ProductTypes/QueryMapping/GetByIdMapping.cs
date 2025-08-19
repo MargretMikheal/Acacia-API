@@ -7,7 +7,11 @@ namespace Acacia.Core.Mapping.ProductTypes
     {
         void GetByIdMapping()
         {
-            CreateMap<ProductType, ProductTypeResponse>();
+            CreateMap<ProductType, ProductTypeResponse>()
+                .ForMember(
+                    dest => dest.Name,
+                    memberOptions => memberOptions.MapFrom(src => src.Localize(src.NameAr, src.NameEn))
+                );
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Acacia.Core.Bases;
-using Acacia.Core.Features.ProductSizes.Commands.CreateProductSize;
 using MediatR;
 
 namespace Acacia.Core.Features.ProductSizes.Commands.UpdateProductSize

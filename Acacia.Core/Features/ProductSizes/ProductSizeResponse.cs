@@ -1,4 +1,4 @@
-﻿namespace Acacia.Core.Features.ProductSizes.Commands.CreateProductSize
+﻿namespace Acacia.Core.Features.ProductSizes
 {
     public class ProductSizeResponse
     {
