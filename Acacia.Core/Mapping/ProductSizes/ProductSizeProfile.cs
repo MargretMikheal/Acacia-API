@@ -8,6 +8,7 @@ namespace Acacia.Core.Mapping.ProductSizes
         {
             CreateProductSizeCommandMapping();
             ProductSizeResponseMapping();
+            UpdateProductSizeMapping();
         }
     }
 }

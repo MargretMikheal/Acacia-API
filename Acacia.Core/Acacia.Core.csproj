@@ -50,8 +50,6 @@
     <Folder Include="Features\PriceLists\Commands\UpdatePriceList\" />
     <Folder Include="Features\PriceLists\Queries\GetPriceListById\" />
     <Folder Include="Features\PriceLists\Queries\GetAllPriceLists\" />
-    <Folder Include="Features\ProductSizes\Commands\DeleteProductSize\" />
-    <Folder Include="Features\ProductSizes\Commands\UpdateProductSize\" />
     <Folder Include="Features\ProductSizes\Queries\GetAllProductSizes\" />
     <Folder Include="Features\ProductSizes\Queries\GetProductSizeById\" />
     <Folder Include="Features\ProductTypes\Queries\GetAllProductTypes\" />

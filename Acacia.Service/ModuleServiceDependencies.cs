@@ -1,6 +1,4 @@
-﻿using Acacia.Core.Interfaces.Services;
-using Acacia.Service.Services;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace Acacia.Service
 {
@@ -8,7 +6,6 @@ namespace Acacia.Service
     {
         public static IServiceCollection AddServiceDependencies(this IServiceCollection services)
         {
-            //services.AddTransient<IProductSizeService, ProductSizeService>();
             return services;
         }
     }
