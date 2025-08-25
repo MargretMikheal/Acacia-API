@@ -46,9 +46,6 @@
     <Folder Include="Features\Oils\Queries\GetOilById\" />
     <Folder Include="Features\Oils\Queries\GetAllOils\" />
     <Folder Include="Features\Oils\Queries\GetOilsByCompany\" />
-    <Folder Include="Features\PriceLists\Commands\DeletePriceList\" />
-    <Folder Include="Features\PriceLists\Commands\UpdatePriceList\" />
-    <Folder Include="Features\PriceLists\Queries\GetPriceListById\" />
     <Folder Include="Features\PriceLists\Queries\GetAllPriceLists\" />
     <Folder Include="Features\ProductSizes\Queries\GetAllProductSizes\" />
     <Folder Include="Features\ProductTypes\Queries\GetAllProductTypes\" />

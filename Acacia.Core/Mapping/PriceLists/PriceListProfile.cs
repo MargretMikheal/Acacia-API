@@ -7,6 +7,7 @@ public partial class PriceListProfile : Profile
     public PriceListProfile()
     {
         CreatePriceListCommandMapping();
+        UpdatePriceListCommandMapping();
         PriceListResponseMapping();
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Acacia.Core.Features.PriceLists.Commands.CreatePriceList;
+﻿namespace Acacia.Core.Features.PriceLists;
 
 public class PriceListResponse
 {
