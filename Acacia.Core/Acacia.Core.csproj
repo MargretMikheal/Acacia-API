@@ -11,6 +11,7 @@
     <PackageReference Include="FluentValidation" Version="12.0.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
     <PackageReference Include="MediatR" Version="13.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="9.0.7" />
   </ItemGroup>
@@ -20,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\BottleDesigns\Commands\CreateBottleDesign\" />
     <Folder Include="Features\BottleDesigns\Commands\DeleteBottleDesign\" />
     <Folder Include="Features\BottleDesigns\Commands\UpdateBottleDesign\" />
     <Folder Include="Features\BottleDesigns\Queries\GetBottleDesignById\" />

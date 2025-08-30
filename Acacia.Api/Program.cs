@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using System.Globalization;
 
@@ -28,7 +29,7 @@ public class Program
 
         #region Dependency Injection
         builder.Services.AddInfrastructureDependencies()
-            .AddServiceDependencies()
+            .AddServiceDependencies(builder.Configuration)
             .AddCoreDependencies()
             .AddIdentityServices(builder.Configuration)
             .AddServiceRegisteration(builder.Configuration);
@@ -73,6 +74,7 @@ public class Program
                 });
         });
         #endregion
+
         builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
         builder.Services.AddTransient<IUrlHelper>(x =>
         {
@@ -104,9 +106,9 @@ public class Program
         app.UseHttpsRedirection();
         app.UseCors(MyAllowSpecificOrigins);
 
+        app.UseStaticFiles();
 
         app.UseAuthorization();
-
 
         app.MapControllers();
 
