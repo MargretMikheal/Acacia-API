@@ -8,5 +8,6 @@ public partial class BottleDesignProfile : Profile
     {
         CreateBottleDesignCommandMapping();
         BottleDesignResponseMapping();
+        UpdateBottleDesignCommandMapping();
     }
 }

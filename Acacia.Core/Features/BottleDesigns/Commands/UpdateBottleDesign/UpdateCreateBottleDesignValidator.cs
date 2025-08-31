@@ -1,11 +1,15 @@
 ﻿using FluentValidation;
 
-namespace Acacia.Core.Features.BottleDesigns.Commands.CreateBottleDesign;
+namespace Acacia.Core.Features.BottleDesigns.Commands.UpdateBottleDesign;
 
-public class CreateBottleDesignValidator : AbstractValidator<CreateBottleDesignCommand>
+public class UpdateCreateBottleDesignValidator : AbstractValidator<UpdateBottleDesignCommand>
 {
-    public CreateBottleDesignValidator()
+    public UpdateCreateBottleDesignValidator()
     {
+        RuleFor(c => c.Id)
+            .NotEmpty().WithMessage("Id is required.")
+            .GreaterThan(0).WithMessage("Invalid BottleDesign Id");
+
         RuleFor(x => x.Name)
             .NotEmpty().WithMessage("Name is required.")
             .MaximumLength(100).WithMessage("Name must not exceed 100 characters.");

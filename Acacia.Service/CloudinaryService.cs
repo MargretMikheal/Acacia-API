@@ -1,4 +1,5 @@
 ﻿using Acacia.Core.Interfaces.Services;
+using Acacia.Core.Models.Cloudinary;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
@@ -14,7 +15,7 @@ public class CloudinaryService : ICloudinaryService
         _cloudinary = cloudinary;
     }
 
-    public async Task<string> UploadImageAsync(IFormFile file, string folder, CancellationToken token)
+    public async Task<CloudinaryImageResult> UploadImageAsync(IFormFile file, string folder, CancellationToken token)
     {
         if (file == null || file.Length == 0)
             throw new ArgumentException("File is empty");
@@ -26,11 +27,30 @@ public class CloudinaryService : ICloudinaryService
             Folder = folder
         };
 
-        var uploadResult = await _cloudinary.UploadAsync(uploadParams);
+        var uploadResult = await _cloudinary.UploadAsync(uploadParams, token);
 
         if (uploadResult.Error != null)
             throw new Exception(uploadResult.Error.Message);
 
-        return uploadResult.SecureUrl.AbsoluteUri;
+        return new CloudinaryImageResult
+        {
+            PublicId = uploadResult.PublicId,
+            Url = uploadResult.SecureUrl.AbsoluteUri
+        };
+    }
+
+    public async Task<bool> DeleteImageAsync(string publicId, CancellationToken token)
+    {
+        if (string.IsNullOrEmpty(publicId))
+            throw new ArgumentException("PublicId cannot be null or empty");
+
+        var deletionParams = new DeletionParams(publicId)
+        {
+            ResourceType = ResourceType.Image
+        };
+
+        var deletionResult = await _cloudinary.DestroyAsync(deletionParams);
+
+        return deletionResult.Result == "ok";
     }
 }

@@ -9,6 +9,7 @@ public class BottleDesign : BaseEntity
 
     public decimal Price { get; set; }
     public string ImageUrl { get; set; }
+    public string ImagePublicId { get; set; }
 
     public ICollection<FinalProduct> FinalProducts { get; set; }
 }
