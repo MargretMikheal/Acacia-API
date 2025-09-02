@@ -3,6 +3,7 @@ using Acacia.Data.Entities;
 
 namespace Acacia.Core.Interfaces.IReposetories;
 
-public interface ICompanyReposetory : IGenericRepository<Company>
+public interface IOilRepository : IGenericRepository<Oil>
 {
 }
+

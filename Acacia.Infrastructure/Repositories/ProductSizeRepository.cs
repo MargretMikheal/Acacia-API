@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Acacia.Infrastructure.Repositories;
 
-public class ProductSizeReposetory : GenericRepository<ProductSize>, IProductSizeRepository
+public class ProductSizeRepository : GenericRepository<ProductSize>, IProductSizeRepository
 {
-    public ProductSizeReposetory(AcaciaDbContext context) : base(context) { }
+    public ProductSizeRepository(AcaciaDbContext context) : base(context) { }
 
     public async Task<bool> ExistsForProductAsync(int productTypeId, decimal size, int? excludeId = null)
     {

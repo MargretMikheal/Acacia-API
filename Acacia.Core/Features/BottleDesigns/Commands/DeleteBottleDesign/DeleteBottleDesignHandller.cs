@@ -33,7 +33,7 @@ public class DeleteBottleDesignHandller : ResponseHandler,
     #region Methods
     public async Task<Response<string>> Handle(DeleteBottleDesignCommand request, CancellationToken cancellationToken)
     {
-        var existing = await _unitOfWork.bottleDesignReposetory.GetByIdAsync(request.Id);
+        var existing = await _unitOfWork.bottleDesignRepository.GetByIdAsync(request.Id);
         if (existing == null)
         {
             var error = new Dictionary<string, List<string>>
@@ -49,7 +49,7 @@ public class DeleteBottleDesignHandller : ResponseHandler,
             await _fileService.DeleteImageAsync(existing.ImagePublicId, cancellationToken);
         }
 
-        await _unitOfWork.bottleDesignReposetory.DeleteAsync(existing.Id);
+        await _unitOfWork.bottleDesignRepository.DeleteAsync(existing.Id);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Success<string>(_localizer[SharedResourcesKeys.Deleted]);

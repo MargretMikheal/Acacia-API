@@ -5,8 +5,7 @@ using Acacia.Infrastructure.Repositories.Generic;
 
 namespace Acacia.Infrastructure.Repositories;
 
-public class IngredientReposetory : GenericRepository<Ingredient>, IIngredientRepository
+public class BottleDesignRepository : GenericRepository<BottleDesign>, IBottleDesignRepository 
 {
-    public IngredientReposetory(AcaciaDbContext context) : base(context) {}
+    public BottleDesignRepository(AcaciaDbContext context) : base(context) {}
 }
-

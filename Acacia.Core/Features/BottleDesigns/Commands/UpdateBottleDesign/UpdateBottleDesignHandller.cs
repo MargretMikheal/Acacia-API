@@ -37,7 +37,7 @@ public class UpdateBottleDesignHandller : ResponseHandler,
     public async Task<Response<BottleDesignResponse>> Handle(UpdateBottleDesignCommand request, CancellationToken cancellationToken)
     {
 
-        var existing = await _unitOfWork.bottleDesignReposetory.GetByIdAsync(request.Id);
+        var existing = await _unitOfWork.bottleDesignRepository.GetByIdAsync(request.Id);
         if (existing == null)
         {
             var error = new Dictionary<string, List<string>>
@@ -72,7 +72,7 @@ public class UpdateBottleDesignHandller : ResponseHandler,
             existing.ImagePublicId = uploadResult.PublicId;
         }
 
-        await _unitOfWork.bottleDesignReposetory.UpdateAsync(existing, cancellationToken);
+        await _unitOfWork.bottleDesignRepository.UpdateAsync(existing, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         var dto = _mapper.Map<BottleDesignResponse>(existing);

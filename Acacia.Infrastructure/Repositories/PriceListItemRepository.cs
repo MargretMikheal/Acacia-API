@@ -5,7 +5,8 @@ using Acacia.Infrastructure.Repositories.Generic;
 
 namespace Acacia.Infrastructure.Repositories;
 
-public class ProductTypeReposetory : GenericRepository<ProductType>, IProductTypeRepository
+public class PriceListItemRepository : GenericRepository<PriceListItem>, IPriceListItemRepository
 {
-    public ProductTypeReposetory(AcaciaDbContext context) : base(context) {}
+    public PriceListItemRepository(AcaciaDbContext context) : base(context) {}
 }
+

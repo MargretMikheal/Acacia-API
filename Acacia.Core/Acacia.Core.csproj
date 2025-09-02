@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\BottleDesigns\Queries\GetBottleDesignById\" />
     <Folder Include="Features\BottleDesigns\Queries\GetAllBottleDesigns\" />
     <Folder Include="Features\Companies\Commands\CreateCompany\" />
     <Folder Include="Features\Companies\Commands\DeleteCompany\" />

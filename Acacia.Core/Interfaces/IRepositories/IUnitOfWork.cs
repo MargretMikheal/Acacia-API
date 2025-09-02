@@ -5,11 +5,11 @@ namespace Acacia.Core.Interfaces.IReposetories;
 public interface IUnitOfWork
 {
     // Repositories
-    IBottleDesignReposetory bottleDesignReposetory { get; }
-    ICompanyReposetory companyReposetory { get; }
+    IBottleDesignRepository bottleDesignRepository { get; }
+    ICompanyRepository companyRepository { get; }
     IIngredientRepository ingredientRepository { get; }
     IOilOccasionRepository oilOccasionRepository { get; }
-    IOilReposetory oilReposetory { get; }
+    IOilRepository oilRepository { get; }
     IOilSeasonRepository oilSeasonRepository { get; }
     IPriceListItemRepository priceListItemRepository { get; }
     IPriceListRepository priceListRepository { get; }

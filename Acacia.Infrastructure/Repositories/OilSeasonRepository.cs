@@ -5,8 +5,8 @@ using Acacia.Infrastructure.Repositories.Generic;
 
 namespace Acacia.Infrastructure.Repositories;
 
-public class CompanyReposetory : GenericRepository<Company>, ICompanyReposetory
+public class OilSeasonRepository : GenericRepository<OilSeasonScore>, IOilSeasonRepository
 {
-    public CompanyReposetory(AcaciaDbContext context) : base(context) {}
+    public OilSeasonRepository(AcaciaDbContext context) : base(context) {}
 }
 

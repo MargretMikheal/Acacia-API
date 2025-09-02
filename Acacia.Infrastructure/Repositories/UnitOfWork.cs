@@ -13,16 +13,16 @@ public class UnitOfWork : IUnitOfWork
         _context = context;
     }
     // Repositories
-    public IBottleDesignReposetory bottleDesignReposetory => new BottleDesignReposetory(_context);
-    public ICompanyReposetory companyReposetory => new CompanyReposetory(_context);
-    public IIngredientRepository ingredientRepository => new IngredientReposetory(_context);
-    public IOilOccasionRepository oilOccasionRepository => new OilOccasionReposetory(_context);
-    public IOilReposetory oilReposetory => new OilReposetory(_context);
-    public IOilSeasonRepository oilSeasonRepository => new OilSeasonReposetory(_context);
-    public IPriceListItemRepository priceListItemRepository => new PriceListItemReposetory(_context);
-    public IPriceListRepository priceListRepository => new PriceListReposetory(_context);
-    public IProductSizeRepository productSizeRepository => new ProductSizeReposetory(_context);
-    public IProductTypeRepository productTypeRepository => new ProductTypeReposetory(_context);
+    public IBottleDesignRepository bottleDesignRepository => new BottleDesignRepository(_context);
+    public ICompanyRepository companyRepository => new CompanyRepository(_context);
+    public IIngredientRepository ingredientRepository => new IngredientRepository(_context);
+    public IOilOccasionRepository oilOccasionRepository => new OilOccasionRepository(_context);
+    public IOilRepository oilRepository => new OilRepository(_context);
+    public IOilSeasonRepository oilSeasonRepository => new OilSeasonRepository(_context);
+    public IPriceListItemRepository priceListItemRepository => new PriceListItemRepository(_context);
+    public IPriceListRepository priceListRepository => new PriceListRepository(_context);
+    public IProductSizeRepository productSizeRepository => new ProductSizeRepository(_context);
+    public IProductTypeRepository productTypeRepository => new ProductTypeRepository(_context);
 
     // FinalProducts
     public IPerfumeFinalProductRepository perfumeFinalProductRepository => new PerfumeFinalProductRepository(_context);

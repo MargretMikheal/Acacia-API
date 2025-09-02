@@ -55,7 +55,7 @@ public class CreateBottleDesignHandller : ResponseHandler,
         entity.ImageUrl = uploadResult.Url;
         entity.ImagePublicId = uploadResult.PublicId;
 
-        var created = await _unitOfWork.bottleDesignReposetory.AddAsync(entity, cancellationToken);
+        var created = await _unitOfWork.bottleDesignRepository.AddAsync(entity, cancellationToken);
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
