@@ -1,9 +1,8 @@
 ﻿using Acacia.Core.Interfaces.IReposetories.Generic;
-using Acacia.Data.Commons;
 using Acacia.Data.Entities;
 using Acacia.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using System.Threading;
+using System.Linq.Expressions;
 
 namespace Acacia.Infrastructure.Repositories.Generic;
 
@@ -55,4 +54,6 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         return await _dbSet.AnyAsync(e => e.Id == id, cancellationToken);
     }
+    public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
+            => await _dbSet.AnyAsync(predicate, cancellationToken);
 }

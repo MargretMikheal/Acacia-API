@@ -4,6 +4,7 @@ public class Company : BaseEntity
 {
     public string Name { get; set; }
     public string ImageUrl { get; set; }
+    public string ImagePublicId { get; set; }
 
     public ICollection<Oil> Oils { get; set; }
 }

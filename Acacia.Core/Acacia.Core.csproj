@@ -14,6 +14,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="9.0.7" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.6.7" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,9 +34,6 @@
     <Folder Include="Features\FinalProducts\Commands\UpdateFinalProduct\" />
     <Folder Include="Features\FinalProducts\Queries\GetFinalProductById\" />
     <Folder Include="Features\FinalProducts\Queries\GetAllFinalProducts\" />
-    <Folder Include="Features\Ingredients\Commands\CreateIngredient\" />
-    <Folder Include="Features\Ingredients\Commands\DeleteIngredient\" />
-    <Folder Include="Features\Ingredients\Commands\UpdateIngredient\" />
     <Folder Include="Features\Ingredients\Queries\GetIngredientById\" />
     <Folder Include="Features\Ingredients\Queries\GetAllIngredients\" />
     <Folder Include="Features\Oils\Commands\CreateOil\" />

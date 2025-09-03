@@ -18,8 +18,8 @@ namespace Acacia.Infrastructure
                 swagger.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Galaxy Store API",
-                    Description = "API Documentation for Galaxy Store"
+                    Title = "Acacia API",
+                    Description = "API Documentation for Acacia"
                 });
 
                 swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
