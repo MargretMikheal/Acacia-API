@@ -31,7 +31,6 @@ namespace Acacia.Core.Features.Ingredients.Commands.CreateIngredient
 
         public async Task<Response<IngredientResponse>> Handle(CreateIngredientCommand request, CancellationToken cancellationToken)
         {
-            // ✅ Check duplicate name (Arabic or English)
             var exists = await _unitOfWork.ingredientRepository
                 .AnyAsync(x => x.NameAr == request.NameAr || x.NameEn == request.NameEn, cancellationToken);
 
@@ -46,15 +45,17 @@ namespace Acacia.Core.Features.Ingredients.Commands.CreateIngredient
 
             var entity = _mapper.Map<Ingredient>(request);
 
-            var uploadResult = await _fileService.UploadImageAsync(request.Image, "Ingredients", cancellationToken);
-            entity.ImageUrl = uploadResult.Url;
-            entity.ImagePublicId = uploadResult.PublicId;
+            if (request.Image != null)
+            {
+                var uploadResult = await _fileService.UploadImageAsync(request.Image, "Ingredients", cancellationToken);
+                entity.ImageUrl = uploadResult.Url;
+                entity.ImagePublicId = uploadResult.PublicId;
+            }
 
             var created = await _unitOfWork.ingredientRepository.AddAsync(entity, cancellationToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             var dto = _mapper.Map<IngredientResponse>(created);
-
             return Created(dto);
         }
     }

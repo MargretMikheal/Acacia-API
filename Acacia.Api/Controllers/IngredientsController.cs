@@ -2,6 +2,8 @@
 using Acacia.Core.Features.Ingredients.Commands.CreateIngredient;
 using Acacia.Core.Features.Ingredients.Commands.DeleteIngredient;
 using Acacia.Core.Features.Ingredients.Commands.UpdateIngredient;
+using Acacia.Core.Features.Ingredients.Queries.GetAllIngredients;
+using Acacia.Core.Features.Ingredients.Queries.GetIngredientById;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Acacia.Api.Controllers
@@ -29,5 +31,13 @@ namespace Acacia.Api.Controllers
             var response = await _mediator.Send(command);
             return NewResult(response);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+            => NewResult(await _mediator.Send(new GetIngredientByIdQuery { Id = id }));
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+            => NewResult(await _mediator.Send(new GetAllIngredientsQuery()));
     }
 }

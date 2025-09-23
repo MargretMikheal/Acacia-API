@@ -14,8 +14,7 @@ namespace Acacia.Core.Features.Ingredients.Commands.CreateIngredient
                 .NotEmpty().WithMessage("English name is required")
                 .MaximumLength(100);
 
-            RuleFor(x => x.Image)
-                .NotNull().WithMessage("Image is required");
+
         }
     }
 }

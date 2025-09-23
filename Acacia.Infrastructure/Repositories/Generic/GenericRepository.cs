@@ -56,4 +56,12 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     }
     public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
             => await _dbSet.AnyAsync(predicate, cancellationToken);
+
+    public async Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken)
+    {
+        return await _context.Set<T>()
+            .Where(predicate)
+            .ToListAsync(cancellationToken);
+    }
+
 }

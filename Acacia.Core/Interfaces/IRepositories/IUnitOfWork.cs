@@ -13,7 +13,7 @@ public interface IUnitOfWork
     IOilSeasonRepository oilSeasonRepository { get; }
     IPriceListItemRepository priceListItemRepository { get; }
     IPriceListRepository priceListRepository { get; }
-    IProductSizeRepository productSizeRepository { get; }   
+    IProductSizeRepository productSizeRepository { get; }
     IProductTypeRepository productTypeRepository { get; }
 
     // FinalProducts
