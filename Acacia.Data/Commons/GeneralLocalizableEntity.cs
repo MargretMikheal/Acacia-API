@@ -1,8 +1,9 @@
-﻿using System.Globalization;
+﻿using Acacia.Data.Entities;
+using System.Globalization;
 
 namespace Acacia.Data.Commons
 {
-    public class GeneralLocalizableEntity
+    public class GeneralLocalizableEntity : BaseEntity
     {
         public string Localize(string textAr, string textEN)
         {

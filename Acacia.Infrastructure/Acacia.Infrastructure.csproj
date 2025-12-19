@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Acacia.Core\Acacia.Core.csproj" />
     <ProjectReference Include="..\Acacia.Data\Acacia.Data.csproj" />
   </ItemGroup>
 

@@ -120,7 +120,7 @@
   <data name="Added" xml:space="preserve">
     <value>added successfuly</value>
   </data>
-  <data name="address" xml:space="preserve">
+  <data name="Address" xml:space="preserve">
     <value>address</value>
   </data>
   <data name="BadRequest" xml:space="preserve">
@@ -141,6 +141,9 @@
   <data name="Exists" xml:space="preserve">
     <value>Exists</value>
   </data>
+  <data name="Invalid" xml:space="preserve">
+    <value>Invalid</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="Required" xml:space="preserve">
     <value>This Field is Required</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Success</value>
   </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>Un authorized</value>
@@ -239,5 +245,8 @@
   </data>
   <data name="FailedToResetPassword" xml:space="preserve">
     <value>Failed To Reset Password</value>
+  </data>
+  <data name="DuplicateEntry" xml:space="preserve">
+    <value>Duplicate Entry</value>
   </data>
 </root>

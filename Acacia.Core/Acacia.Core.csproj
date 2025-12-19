@@ -11,14 +11,28 @@
     <PackageReference Include="FluentValidation" Version="12.0.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
     <PackageReference Include="MediatR" Version="13.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="9.0.7" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.6.7" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Acacia.Data\Acacia.Data.csproj" />
-    <ProjectReference Include="..\Acacia.Infrastructure\Acacia.Infrastructure.csproj" />
-    <ProjectReference Include="..\Acacia.Service\Acacia.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\BottleDesigns\Queries\GetAllBottleDesigns\" />
+    <Folder Include="Features\FinalProducts\Commands\CreateFinalProduct\" />
+    <Folder Include="Features\FinalProducts\Commands\DeleteFinalProduct\" />
+    <Folder Include="Features\FinalProducts\Commands\UpdateFinalProduct\" />
+    <Folder Include="Features\FinalProducts\Queries\GetFinalProductById\" />
+    <Folder Include="Features\FinalProducts\Queries\GetAllFinalProducts\" />
+    <Folder Include="Features\Oils\Queries\GetOilsByCompany\" />
+    <Folder Include="Features\PriceLists\Queries\GetAllPriceLists\" />
+    <Folder Include="Features\ProductSizes\Queries\GetAllProductSizes\" />
+    <Folder Include="Features\ProductTypes\Queries\GetAllProductTypes\" />
   </ItemGroup>
 
 </Project>
