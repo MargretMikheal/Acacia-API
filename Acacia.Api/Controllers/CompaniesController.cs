@@ -4,6 +4,7 @@ using Acacia.Core.Features.Companies.Commands.DeleteCompany;
 using Acacia.Core.Features.Companies.Commands.UpdateCompany;
 using Acacia.Core.Features.Companies.Queries.GetAllCompanies;
 using Acacia.Core.Features.Companies.Queries.GetCompanyById;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Acacia.Api.Controllers
@@ -13,6 +14,7 @@ namespace Acacia.Api.Controllers
     public class CompaniesController : AppControllerBase
     {
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create([FromForm] CreateCompanyCommand command)
         {
             var response = await _mediator.Send(command);
@@ -20,6 +22,7 @@ namespace Acacia.Api.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Update(int id, [FromForm] UpdateCompanyCommand command)
         {
             if (id != command.Id)
@@ -30,6 +33,7 @@ namespace Acacia.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int id)
         {
             var command = new DeleteCompanyCommand { Id = id };

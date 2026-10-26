@@ -14,6 +14,12 @@ namespace Acacia.Infrastructure.Configuration
 
             builder.HasKey(fp => fp.Id);
 
+            builder.Property(fp => fp.BasePrice)
+                   .HasPrecision(18, 2);
+
+            builder.Property(fp => fp.TotalPrice)
+                   .HasPrecision(18, 2);
+
             builder.HasOne(fp => fp.Oil)
                    .WithMany(o => o.FinalProducts)
                    .HasForeignKey(fp => fp.OilId)

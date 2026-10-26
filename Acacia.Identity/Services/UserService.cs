@@ -47,4 +47,14 @@ public class UserService : IUserService
             Lastname = q.LastName
         }).ToList();
     }
+
+    Task<UserDto> IUserService.GetUser(string userId)
+    {
+        throw new NotImplementedException();
+    }
+
+    Task<List<UserDto>> IUserService.GetUsers()
+    {
+        throw new NotImplementedException();
+    }
 }

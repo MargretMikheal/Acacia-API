@@ -1,38 +1,45 @@
-﻿using Acacia.Core.Interfaces.Services;
-using Acacia.Core.Models.Cloudinary;
-using CloudinaryDotNet;
-using CloudinaryDotNet.Actions;
+﻿using Amazon.S3;
+using Acacia.Core.Interfaces.Services;
+using Acacia.Core.Models.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace Acacia.Service
+namespace Acacia.Service;
+
+public static class ModuleServiceDependencies
 {
-    public static class ModuleServiceDependencies
+    public static IServiceCollection AddServiceDependencies(this IServiceCollection services, IConfiguration configuration)
     {
-        public static IServiceCollection AddServiceDependencies(this IServiceCollection services, IConfiguration configuration)
+        // Bind Backblaze B2 settings
+        services.Configure<BackblazeSettings>(configuration.GetSection("Backblaze"));
+
+        // Register Amazon S3 Client configured for Backblaze B2 S3-compatible API
+        services.AddSingleton<IAmazonS3>(sp =>
         {
-            // Bind Cloudinary settings
-            services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
+            var settings = sp.GetRequiredService<IOptions<BackblazeSettings>>().Value;
 
-            // Register Cloudinary client
-            services.AddScoped(provider =>
+            var accessKey = string.IsNullOrWhiteSpace(settings.AccessKey) ? "dummy-key" : settings.AccessKey;
+            var secretKey = string.IsNullOrWhiteSpace(settings.SecretKey) ? "dummy-secret" : settings.SecretKey;
+            var region = string.IsNullOrWhiteSpace(settings.Region) ? "us-east-005" : settings.Region;
+            var credentials = new Amazon.Runtime.BasicAWSCredentials(accessKey, secretKey);
+
+            var config = new AmazonS3Config
             {
-                var settings = provider.GetRequiredService<IOptions<CloudinarySettings>>().Value;
+                ServiceURL = string.IsNullOrWhiteSpace(settings.Endpoint)
+                    ? $"https://s3.{region}.backblazeb2.com"
+                    : settings.Endpoint,
+                AuthenticationRegion = region,
+                ForcePathStyle = true
+            };
 
-                Account account = new Account(
-                    settings.CloudName,
-                    settings.ApiKey,
-                    settings.ApiSecret
-                );
+            return new AmazonS3Client(credentials, config);
+        });
 
-                return new CloudinaryDotNet.Cloudinary(account);
-            });
+        // Register Storage service (Backblaze B2)
+        services.AddScoped<IStorageService, BackblazeStorageService>();
+        services.AddScoped<ICloudinaryService, BackblazeStorageService>();
 
-            // Register your service
-            services.AddScoped<ICloudinaryService, CloudinaryService>();
-
-            return services;
-        }
+        return services;
     }
 }

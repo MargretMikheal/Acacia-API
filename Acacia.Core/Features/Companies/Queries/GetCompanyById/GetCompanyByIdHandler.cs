@@ -1,5 +1,6 @@
 ﻿using Acacia.Core.Bases;
 using Acacia.Core.Interfaces.IReposetories;
+using Acacia.Core.Interfaces.Services;
 using Acacia.Core.Resources;
 using Acacia.Data.Entities;
 using AutoMapper;
@@ -14,13 +15,19 @@ namespace Acacia.Core.Features.Companies.Queries.GetCompanyById
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IStringLocalizer<SharedResources> _localizer;
+        private readonly IStorageService _storageService;
 
-        public GetCompanyByIdHandler(IUnitOfWork unitOfWork, IMapper mapper, IStringLocalizer<SharedResources> localizer)
+        public GetCompanyByIdHandler(
+            IUnitOfWork unitOfWork,
+            IMapper mapper,
+            IStringLocalizer<SharedResources> localizer,
+            IStorageService storageService)
             : base(localizer)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _localizer = localizer;
+            _storageService = storageService;
         }
 
         public async Task<Response<CompanyResponse>> Handle(GetCompanyByIdQuery request, CancellationToken cancellationToken)
@@ -36,6 +43,7 @@ namespace Acacia.Core.Features.Companies.Queries.GetCompanyById
             }
 
             var dto = _mapper.Map<CompanyResponse>(company);
+            dto.ImageUrl = _storageService.ResolvePresignedUrl(company.ImagePublicId ?? company.ImageUrl) ?? dto.ImageUrl;
             return Success(dto);
         }
     }

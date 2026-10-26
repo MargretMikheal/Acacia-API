@@ -11,7 +11,7 @@ namespace Acacia.Infrastructure
         public static IServiceCollection AddServiceRegisteration(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<AcaciaDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("dbcontext")));
+                options.UseSqlServer(configuration.GetConnectionString("AcaciaDbContext")));
             #region Swagger
             services.AddSwaggerGen(swagger =>
             {

@@ -12,6 +12,8 @@ namespace Acacia.Infrastructure.Configuration
 
             builder.HasKey(bd => bd.Id);
 
+            builder.Property(bd => bd.Price)
+                   .HasPrecision(18, 2);
 
             builder.HasOne(bd => bd.ProductType)
                    .WithMany(pt => pt.BottleDesigns)

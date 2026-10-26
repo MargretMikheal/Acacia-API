@@ -4,6 +4,7 @@ namespace Acacia.Core.Interfaces.Identity;
 
 public interface IUserService
 {
-    Task<List<User>> GetUsers();
-    Task<User> GetUser(string userId);
+    string UserId { get; }
+    Task<UserDto> GetUser(string userId);
+    Task<List<UserDto>> GetUsers();
 }
