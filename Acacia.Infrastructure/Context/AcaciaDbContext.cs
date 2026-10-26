@@ -26,6 +26,12 @@ namespace Acacia.Infrastructure.Context
         public DbSet<IncenseFinalProduct> IncenseFinalProducts { get; set; }
         public DbSet<MukhammariaFinalProduct> MukhammariaFinalProducts { get; set; }
 
+        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+        {
+            configurationBuilder.Properties<decimal>().HavePrecision(18, 2);
+            base.ConfigureConventions(configurationBuilder);
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AcaciaDbContext).Assembly);

@@ -17,6 +17,7 @@ public interface IUnitOfWork
     IProductTypeRepository productTypeRepository { get; }
 
     // FinalProducts
+    IFinalProductRepository finalProductRepository { get; }
     IPerfumeFinalProductRepository perfumeFinalProductRepository { get; }
 
     // Save changes to the database

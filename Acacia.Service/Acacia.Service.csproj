@@ -7,10 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CloudinaryDotNet" Version="1.27.7" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.415.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.7" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Acacia.Core\Acacia.Core.csproj" />
     <ProjectReference Include="..\Acacia.Data\Acacia.Data.csproj" />
     <ProjectReference Include="..\Acacia.Infrastructure\Acacia.Infrastructure.csproj" />
   </ItemGroup>

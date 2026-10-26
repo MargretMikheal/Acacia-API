@@ -1,5 +1,6 @@
 ﻿using Acacia.Core.Bases;
 using Acacia.Core.Interfaces.IReposetories;
+using Acacia.Core.Interfaces.Services;
 using Acacia.Core.Resources;
 using Acacia.Data.Entities;
 using AutoMapper;
@@ -14,13 +15,19 @@ namespace Acacia.Core.Features.Ingredients.Queries.GetIngredientById
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IStringLocalizer<SharedResources> _localizer;
+        private readonly IStorageService _storageService;
 
-        public GetIngredientByIdHandler(IUnitOfWork unitOfWork, IMapper mapper, IStringLocalizer<SharedResources> localizer)
+        public GetIngredientByIdHandler(
+            IUnitOfWork unitOfWork,
+            IMapper mapper,
+            IStringLocalizer<SharedResources> localizer,
+            IStorageService storageService)
             : base(localizer)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _localizer = localizer;
+            _storageService = storageService;
         }
 
         public async Task<Response<IngredientResponse>> Handle(GetIngredientByIdQuery request, CancellationToken cancellationToken)
@@ -36,6 +43,7 @@ namespace Acacia.Core.Features.Ingredients.Queries.GetIngredientById
             }
 
             var dto = _mapper.Map<IngredientResponse>(ingredient);
+            dto.ImageUrl = _storageService.ResolvePresignedUrl(ingredient.ImagePublicId ?? ingredient.ImageUrl) ?? dto.ImageUrl;
             return Success(dto);
         }
     }

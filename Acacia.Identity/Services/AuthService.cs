@@ -42,7 +42,6 @@ public class AuthService : IAuthService
         var validationResult = await _authRequestValidator.ValidateAsync(authRequest);
         if (!validationResult.IsValid)
         {
-            // Convert ValidationResult to Dictionary
             var errors = validationResult.Errors
                 .GroupBy(f => f.PropertyName)
                 .ToDictionary(
@@ -56,24 +55,37 @@ public class AuthService : IAuthService
         }
 
         var user = await _userManager.FindByEmailAsync(authRequest.Email);
+
+        // Prevent Account Enumeration (OWASP API2:2023): return uniform error message
         if (user == null)
         {
-            return _responseHandler.NotFound<AuthResponse>(
-                        message: $"User with email {authRequest.Email} not found.",
+            return _responseHandler.Unauthorized<AuthResponse>(
+                        message: "Invalid email or password combination.",
                         errors: new Dictionary<string, List<string>>
                         {
-                            ["Email"] = new List<string> { "User not found with this email address" }
+                            ["Credentials"] = new List<string> { "Invalid email or password combination." }
                         });
         }
 
-        var result = await _signInManager.CheckPasswordSignInAsync(user, authRequest.Password, false);
-        if (result.Succeeded == false)
+        // Enable lockout on failure to mitigate brute-force attacks
+        var result = await _signInManager.CheckPasswordSignInAsync(user, authRequest.Password, lockoutOnFailure: true);
+        if (result.IsLockedOut)
         {
             return _responseHandler.Unauthorized<AuthResponse>(
-                        message: "Invalid credentials",
+                        message: "Account is temporarily locked out due to multiple failed login attempts. Please try again later.",
                         errors: new Dictionary<string, List<string>>
                         {
-                            ["Credentials"] = new List<string> { "Invalid email or password combination" }
+                            ["Lockout"] = new List<string> { "Account is temporarily locked out." }
+                        });
+        }
+
+        if (!result.Succeeded)
+        {
+            return _responseHandler.Unauthorized<AuthResponse>(
+                        message: "Invalid email or password combination.",
+                        errors: new Dictionary<string, List<string>>
+                        {
+                            ["Credentials"] = new List<string> { "Invalid email or password combination." }
                         });
         }
 
@@ -81,6 +93,8 @@ public class AuthService : IAuthService
 
         user.LastLoginDate = DateTime.UtcNow;
         await _userManager.UpdateAsync(user);
+
+        var roles = await _userManager.GetRolesAsync(user);
 
         var response = new AuthResponse
         {
@@ -119,6 +133,17 @@ public class AuthService : IAuthService
                             message: "Validation errors occurred");
         }
 
+        var existingUser = await _userManager.FindByEmailAsync(registrationRequest.Email);
+        if (existingUser != null)
+        {
+            return _responseHandler.BadRequest<RegistrationResponse>(
+                message: "Email address is already in use.",
+                errors: new Dictionary<string, List<string>>
+                {
+                    ["Email"] = new List<string> { "A user with this email already exists." }
+                });
+        }
+
         var user = new ApplicationUser
         {
             UserName = registrationRequest.UserName,
@@ -140,7 +165,7 @@ public class AuthService : IAuthService
                 new RegistrationResponse { UserId = user.Id },
                 "Registration successful");
         }
-        // Convert errors to a list of descriptions
+
         var errorMessages = result.Errors.Select(e => e.Description).ToList();
 
         return _responseHandler.BadRequest<RegistrationResponse>(
@@ -161,25 +186,31 @@ public class AuthService : IAuthService
 
         var claims = new[]
         {
-                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim("uid", user.Id)
-            }
+            new Claim(JwtRegisteredClaimNames.Sub, user.UserName ?? user.Email),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(JwtRegisteredClaimNames.Email, user.Email ?? string.Empty),
+            new Claim("uid", user.Id)
+        }
         .Union(userClaims)
         .Union(roleClaims);
 
-        var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));
+        var secret = string.IsNullOrWhiteSpace(_jwtSettings.SecretKey)
+            ? "default-super-secret-key-for-acacia-32-chars-minimum"
+            : _jwtSettings.SecretKey;
 
+        var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
         var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
+
+        // Use UTC time to avoid server local time desynchronization
+        var expires = DateTime.UtcNow.AddMinutes(_jwtSettings.DurationInMinutes > 0 ? _jwtSettings.DurationInMinutes : 60);
 
         var jwtSecurityToken = new JwtSecurityToken(
            issuer: _jwtSettings.Issuer,
            audience: _jwtSettings.Audience,
            claims: claims,
-           expires: DateTime.Now.AddMinutes(_jwtSettings.DurationInMinutes),
+           expires: expires,
            signingCredentials: signingCredentials);
+
         return jwtSecurityToken;
     }
-
 }

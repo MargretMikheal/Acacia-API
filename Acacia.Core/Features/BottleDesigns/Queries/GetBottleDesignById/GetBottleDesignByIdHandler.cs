@@ -1,5 +1,6 @@
 ﻿using Acacia.Core.Bases;
 using Acacia.Core.Interfaces.IReposetories;
+using Acacia.Core.Interfaces.Services;
 using Acacia.Core.Resources;
 using Acacia.Data.Entities;
 using AutoMapper;
@@ -15,18 +16,21 @@ public class GetBottleDesignByIdHandler : ResponseHandler,
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
     private readonly IStringLocalizer<SharedResources> _localizer;
+    private readonly IStorageService _storageService;
     #endregion
 
     #region Ctor
     public GetBottleDesignByIdHandler(
         IUnitOfWork unitOfWork,
         IMapper mapper,
-        IStringLocalizer<SharedResources> localizer
+        IStringLocalizer<SharedResources> localizer,
+        IStorageService storageService
     ) : base(localizer)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
-        _localizer = localizer; 
+        _localizer = localizer;
+        _storageService = storageService;
     }
     #endregion
 
@@ -46,6 +50,7 @@ public class GetBottleDesignByIdHandler : ResponseHandler,
         }
 
         var dto = _mapper.Map<BottleDesignResponse>(entity);
+        dto.ImageUrl = _storageService.ResolvePresignedUrl(entity.ImagePublicId ?? entity.ImageUrl) ?? dto.ImageUrl;
 
         return Success(dto);
     }

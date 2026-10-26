@@ -4,6 +4,7 @@ using Acacia.Core.Features.Ingredients.Commands.DeleteIngredient;
 using Acacia.Core.Features.Ingredients.Commands.UpdateIngredient;
 using Acacia.Core.Features.Ingredients.Queries.GetAllIngredients;
 using Acacia.Core.Features.Ingredients.Queries.GetIngredientById;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Acacia.Api.Controllers
@@ -12,19 +13,24 @@ namespace Acacia.Api.Controllers
     [ApiController]
     public class IngredientsController : AppControllerBase
     {
-        [HttpPut]
-        public async Task<IActionResult> Update([FromForm] UpdateIngredientCommand command)
-        {
-            var response = await _mediator.Send(command);
-            return NewResult(response);
-        }
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create([FromForm] CreateIngredientCommand command)
         {
             var response = await _mediator.Send(command);
             return NewResult(response);
         }
+
+        [HttpPut]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> Update([FromForm] UpdateIngredientCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return NewResult(response);
+        }
+
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var command = new DeleteIngredientCommand { Id = id };

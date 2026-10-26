@@ -5,6 +5,7 @@ using Acacia.Core.Features.Oils.Commands.UpdateOil;
 using Acacia.Core.Features.Oils.Queries.GetAllOils;
 using Acacia.Core.Features.Oils.Queries.GetOilById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Acacia.Api.Controllers
@@ -19,6 +20,7 @@ namespace Acacia.Api.Controllers
         {
             _mediator = mediator;
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
         {
@@ -26,6 +28,7 @@ namespace Acacia.Api.Controllers
             var result = await _mediator.Send(query, cancellationToken);
             return NewResult(result);
         }
+
         [HttpGet]
         public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
         {
@@ -35,12 +38,15 @@ namespace Acacia.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create([FromBody] CreateOilCommand command, CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(command, cancellationToken);
             return NewResult(response);
         }
+
         [HttpPut]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Update([FromBody] UpdateOilCommand command, CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(command, cancellationToken);
@@ -48,6 +54,7 @@ namespace Acacia.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
         {
             var command = new DeleteOilCommand { Id = id };

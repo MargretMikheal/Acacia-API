@@ -45,16 +45,31 @@ namespace Acacia.Core.Features.Companies.Commands.CreateCompany
 
             var entity = _mapper.Map<Company>(request);
 
-            var uploadResult = await _fileService.UploadImageAsync(request.Image, "Companies", cancellationToken);
-            entity.ImageUrl = uploadResult.Url;
-            entity.ImagePublicId = uploadResult.PublicId;
+            string? uploadedPublicId = null;
+            try
+            {
+                if (request.Image != null && request.Image.Length > 0)
+                {
+                    var uploadResult = await _fileService.UploadImageAsync(request.Image, "Companies", cancellationToken);
+                    uploadedPublicId = uploadResult.PublicId;
+                    entity.ImageUrl = uploadResult.Url;
+                    entity.ImagePublicId = uploadResult.PublicId;
+                }
 
-            var created = await _unitOfWork.companyRepository.AddAsync(entity, cancellationToken);
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
+                var created = await _unitOfWork.companyRepository.AddAsync(entity, cancellationToken);
+                await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            var dto = _mapper.Map<CompanyResponse>(created);
-
-            return Created(dto);
+                var dto = _mapper.Map<CompanyResponse>(created);
+                return Created(dto);
+            }
+            catch (Exception)
+            {
+                if (!string.IsNullOrEmpty(uploadedPublicId))
+                {
+                    await _fileService.DeleteImageAsync(uploadedPublicId, cancellationToken);
+                }
+                throw;
+            }
         }
     }
 }
